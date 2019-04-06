@@ -1,0 +1,16 @@
+[
+{
+  "modid": "myrcraft",
+  "name": "Myrcraft",
+  "description": "Ant Colony Mod.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Jake_Evans"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

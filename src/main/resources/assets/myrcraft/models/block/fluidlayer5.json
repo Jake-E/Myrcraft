@@ -1,0 +1,24 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "block/block",
+	"elements": [
+		{
+			"name": "5",
+			"from": [3, 6, 4],
+			"to": [13, 6, 12],
+			"color": 7,
+			"faces": {
+				"up": {"uv": [3, 4, 13, 12], "texture": "#missing"}
+			}
+		},
+		{
+			"name": "5_2",
+			"from": [4, 6, 3],
+			"to": [12, 6, 13],
+			"color": 7,
+			"faces": {
+				"up": {"uv": [4, 3, 12, 13], "texture": "#missing"}
+			}
+		}
+	]
+}

@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "axis=y":    { "model": "myrcraft:rubberwood" },
+    "axis=z":     { "model": "myrcraft:rubberwood", "x": 90 },
+    "axis=x":     { "model": "myrcraft:rubberwood", "x": 90, "y": 90 },
+    "axis=none":   { "model": "oak_bark" }
+  }
+}

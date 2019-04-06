@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "myrcraft:treetap" },
+    "facing=south": { "model": "myrcraft:treetap", "y": 180 },
+    "facing=west":  { "model": "myrcraft:treetap", "y": 270 },
+    "facing=east":  { "model": "myrcraft:treetap", "y": 90 }
+  }
+}

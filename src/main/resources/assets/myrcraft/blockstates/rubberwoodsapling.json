@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "stage=0": { "model": "myrcraft:rubberwoodsapling" },
+    "stage=1": { "model": "myrcraft:rubberwoodsapling" },
+    "inventory": [{"model": "myrcraft:rubberwoodsapling"}]
+  }
+}
