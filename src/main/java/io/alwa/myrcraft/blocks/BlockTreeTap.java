@@ -2,9 +2,9 @@ package io.alwa.myrcraft.blocks;
 
 import io.alwa.myrcraft.tiles.TileEntityRubberWood;
 import io.alwa.myrcraft.tiles.TileEntityTreeTap;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -19,8 +19,16 @@ import javax.annotation.Nullable;
 
 public class BlockTreeTap extends BlockHorizontal {
 
+    public static final PropertyBool FLOWING = PropertyBool.create("flowing");
+
+    public static AxisAlignedBB AXIS_EAST = new AxisAlignedBB(0.769999988079071D, 0.00000000298023224D, 0.3999999940395355D, 1.0D, 0.150000011920929D, 0.5999999761581421D);
+    public static AxisAlignedBB AXIS_WEST = new AxisAlignedBB(0.0D, 0.00000000298023224D, 0.3999999940395355D, 0.23000001192092896D, 0.150000011920929D, 0.5999999761581421D);
+    public static AxisAlignedBB AXIS_SOUTH = new AxisAlignedBB(0.3999999940395355D, 0.00000000298023224D, 1.0D, 0.5999999761581421D, 0.150000011920929D, 0.77000001192092896D);
+    public static AxisAlignedBB AXIS_NORTH = new AxisAlignedBB(0.3999999940395355D, 0.00000000298023224D, 0.0D, 0.5999999761581421D, 0.150000011920929D, 0.23000001192092896D);
+
     public BlockTreeTap() {
         super(Material.IRON);
+        setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(FLOWING, false));
     }
 
     @Nullable
@@ -47,7 +55,7 @@ public class BlockTreeTap extends BlockHorizontal {
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, FACING);
+        return new BlockStateContainer(this, FACING, FLOWING);
     }
 
     @Override
@@ -56,15 +64,13 @@ public class BlockTreeTap extends BlockHorizontal {
         switch (state.getValue(FACING))
         {
             case EAST:
-                return new AxisAlignedBB(0.769999988079071D, 0.00000000298023224D, 0.3999999940395355D, 1.0D, 0.150000011920929D, 0.5999999761581421D);
+                return AXIS_EAST;
             case WEST:
-                return new AxisAlignedBB(0.0D, 0.00000000298023224D, 0.3999999940395355D, 0.23000001192092896D, 0.150000011920929D, 0.5999999761581421D);
+                return AXIS_WEST;
             case SOUTH:
-                return new AxisAlignedBB(0.3999999940395355D, 0.00000000298023224D, 1.0D, 0.5999999761581421D, 0.150000011920929D, 0.77000001192092896D);
-            case NORTH:
-                return new AxisAlignedBB(0.3999999940395355D, 0.00000000298023224D, 0.0D, 0.5999999761581421D, 0.150000011920929D, 0.23000001192092896D);
+                return AXIS_SOUTH;
             default:
-                return new AxisAlignedBB(0.1499999940395355D, 0.00000000298023224D, 0.0D, 0.5999999761581421D, 0.150000011920929D, 0.30000001192092896D);
+                return AXIS_NORTH;
         }
     }
 
@@ -76,12 +82,12 @@ public class BlockTreeTap extends BlockHorizontal {
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        return getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta));
+        return getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta%8)).withProperty(FLOWING, meta/8 == 1);
     }
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        return state.getValue(FACING).getHorizontalIndex();
+        return state.getValue(FACING).getHorizontalIndex() + (state.getValue(FLOWING) ? 8:0 );
     }
 
     @Override
