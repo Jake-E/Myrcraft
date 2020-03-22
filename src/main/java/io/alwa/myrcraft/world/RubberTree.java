@@ -20,7 +20,7 @@ public class RubberTree extends Tree {
     @Override
     protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random random, boolean b) {
         if (RUBBER_TREE_CONFIG == null) {
-            RUBBER_TREE_CONFIG = (new TreeFeatureConfig.Builder(new SimpleBlockStateProvider(MyrcraftBlocks.RUBBERWOOD.getDefaultState()),
+            RUBBER_TREE_CONFIG = (new TreeFeatureConfig.Builder(new SimpleBlockStateProvider(MyrcraftBlocks.RUBBER_WOOD.get().getDefaultState()),
                     new SimpleBlockStateProvider(Blocks.SPRUCE_LEAVES.getDefaultState()),
                     new SpruceFoliagePlacer(2, 1)))
                     .baseHeight(5)
@@ -29,7 +29,7 @@ public class RubberTree extends Tree {
                     .trunkHeightRandom(1)
                     .trunkTopOffsetRandom(2)
                     .ignoreVines()
-                    .setSapling((net.minecraftforge.common.IPlantable) MyrcraftBlocks.RUBBERSAPLING)
+                    .setSapling((net.minecraftforge.common.IPlantable) MyrcraftBlocks.RUBBER_SAPLING.get())
                     .build();
         }
         return Feature.NORMAL_TREE.withConfiguration(RUBBER_TREE_CONFIG);

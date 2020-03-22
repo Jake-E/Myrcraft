@@ -1,5 +1,7 @@
 {
   "variants": {
-    "normal": { "model": "myrcraft:rubberplanks" }
+    "": {
+      "model": "myrcraft:block/rubberplanks"
+    }
   }
 }

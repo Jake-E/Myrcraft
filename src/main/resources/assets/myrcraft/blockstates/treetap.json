@@ -1,13 +1,13 @@
 {
   "variants": {
-    "facing=north,flowing=false": { "model": "myrcraft:treetap" },
-    "facing=south,flowing=false": { "model": "myrcraft:treetap", "y": 180 },
-    "facing=west,flowing=false":  { "model": "myrcraft:treetap", "y": 270 },
-    "facing=east,flowing=false":  { "model": "myrcraft:treetap", "y": 90 },
+    "facing=north,flowing=false": { "model": "myrcraft:block/treetap" },
+    "facing=south,flowing=false": { "model": "myrcraft:block/treetap", "y": 180 },
+    "facing=west,flowing=false":  { "model": "myrcraft:block/treetap", "y": 270 },
+    "facing=east,flowing=false":  { "model": "myrcraft:block/treetap", "y": 90 },
 
-    "facing=north,flowing=true": { "model": "myrcraft:treetap_flowing" },
-    "facing=south,flowing=true": { "model": "myrcraft:treetap_flowing", "y": 180 },
-    "facing=west,flowing=true":  { "model": "myrcraft:treetap_flowing", "y": 270 },
-    "facing=east,flowing=true":  { "model": "myrcraft:treetap_flowing", "y": 90 }
+    "facing=north,flowing=true": { "model": "myrcraft:block/treetap_flowing" },
+    "facing=south,flowing=true": { "model": "myrcraft:block/treetap_flowing", "y": 180 },
+    "facing=west,flowing=true":  { "model": "myrcraft:block/treetap_flowing", "y": 270 },
+    "facing=east,flowing=true":  { "model": "myrcraft:block/treetap_flowing", "y": 90 }
   }
 }

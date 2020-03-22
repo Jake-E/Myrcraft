@@ -1,5 +1,7 @@
 {
   "variants": {
-    "normal": { "model": "myrcraft:woodbucket"}
+    "": {
+      "model": "myrcraft:block/woodbucket"
+    }
   }
 }
