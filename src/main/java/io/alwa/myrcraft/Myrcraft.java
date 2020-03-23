@@ -46,8 +46,6 @@ public class Myrcraft {
             return new ItemStack(MyrcraftItems.RUBBER_WOOD_ITEM.get());
         }
     };
-    
-    public static Fluid LATEX;
 
     public Myrcraft() {
         instance = this;

@@ -4,6 +4,7 @@ import io.alwa.myrcraft.Config;
 import io.alwa.myrcraft.Myrcraft;
 import io.alwa.myrcraft.blocks.TreeTapBlock;
 import io.alwa.myrcraft.blocks.MyrcraftBlocks;
+import io.alwa.myrcraft.fluids.MyrcraftFluids;
 import io.alwa.myrcraft.items.MyrcraftItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -36,12 +37,12 @@ public class TileEntityTreeTap extends TileEntity implements ITickable
                     TileEntityWoodBucket bucket = (TileEntityWoodBucket) blockBucket;
                     TileEntityRubberWood logTank = (TileEntityRubberWood) blockLog;
 
-                    FluidStack stack = logTank.tank.drain(new FluidStack(Myrcraft.LATEX, Config.TRANSFER_RATE.get()), IFluidHandler.FluidAction.EXECUTE);
+                    FluidStack stack = logTank.tank.drain(new FluidStack(MyrcraftFluids.latex_fluid.get(), Config.TRANSFER_RATE.get()), IFluidHandler.FluidAction.EXECUTE);
 
-                    if (stack != null) {
+                    if (!stack.isEmpty()) {
                         int filled = bucket.tank.fill(stack, IFluidHandler.FluidAction.EXECUTE);
                         if (filled > 0) {
-                            logTank.tank.drain(new FluidStack(Myrcraft.LATEX, filled), IFluidHandler.FluidAction.EXECUTE);
+                            logTank.tank.drain(new FluidStack(MyrcraftFluids.latex_fluid.get(), filled), IFluidHandler.FluidAction.EXECUTE);
                             world.setBlockState(pos, world.getBlockState(pos).with(TreeTapBlock.FLOWING, true), 3);
                             if (world.isRemote) {
                                 spawnParticle(pos, tapFace);
