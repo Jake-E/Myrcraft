@@ -27,11 +27,6 @@ import javax.annotation.Nullable;
 
 public class WoodBucketBlock extends Block {
     
-    //TODO shape needs fixing
-//    private VoxelShape SHAPE = Block.makeCuboidShape(0.075D, 0.7D, 0.075D, 0.925D, 0D, 0.925D);
-    //Temp shape while trying to figure out how this works
-    private static final VoxelShape SHAPE = Block.makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 10.0D, 10.0D);
-    
     public WoodBucketBlock() {
         super(Properties.create(Material.WOOD, MaterialColor.BROWN));
     }
@@ -62,6 +57,6 @@ public class WoodBucketBlock extends Block {
     @Override
     public VoxelShape getShape(BlockState p_220053_1_, IBlockReader p_220053_2_, BlockPos p_220053_3_, ISelectionContext p_220053_4_)
     {
-        return SHAPE;
+        return Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 11.0D, 15.0D);
     }
 }
