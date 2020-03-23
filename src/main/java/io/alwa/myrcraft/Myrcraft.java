@@ -66,5 +66,8 @@ public class Myrcraft {
         Config.loadConfig(Config.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MOD_ID + "-common.toml"));
     }
 
-    private void init(FMLCommonSetupEvent event) {}
+    void init(FMLCommonSetupEvent event)
+    {
+        proxy.registerRenders();
+    }
 }
