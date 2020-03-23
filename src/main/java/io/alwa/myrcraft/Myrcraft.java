@@ -1,6 +1,7 @@
 package io.alwa.myrcraft;
 
 import io.alwa.myrcraft.blocks.*;
+import io.alwa.myrcraft.fluids.MyrcraftFluids;
 import io.alwa.myrcraft.items.MyrcraftItems;
 import io.alwa.myrcraft.proxy.ClientProxy;
 import io.alwa.myrcraft.proxy.CommonProxy;
@@ -56,6 +57,9 @@ public class Myrcraft {
         MyrcraftItems.ITEMS.register(eventBus);
         MyrcraftBlocks.BLOCKS.register(eventBus);
         MyrcraftBlocks.TILES_ENTITIES.register(eventBus);
+        MyrcraftFluids.BLOCKS.register(eventBus);
+        MyrcraftFluids.ITEMS.register(eventBus);
+        MyrcraftFluids.FLUIDS.register(eventBus);
     
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.CLIENT_CONFIG);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_CONFIG);
