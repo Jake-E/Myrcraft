@@ -24,12 +24,6 @@ public class TreeTapBlock extends DirectionalBlock
 {
     public static final BooleanProperty FLOWING = BooleanProperty.create("flowing");
     
-    //TODO these are wrong and need fixing
-    public static VoxelShape AXIS_EAST =  Block.makeCuboidShape(0.769999988079071D, 0.00000000298023224D, 0.3999999940395355D, 1.0D, 0.150000011920929D, 0.5999999761581421D);
-    public static VoxelShape AXIS_WEST =  Block.makeCuboidShape(0.0D, 0.00000000298023224D, 0.3999999940395355D, 0.23000001192092896D, 0.150000011920929D, 0.5999999761581421D);
-    public static VoxelShape AXIS_SOUTH =  Block.makeCuboidShape(0.3999999940395355D, 0.00000000298023224D, 1.0D, 0.5999999761581421D, 0.150000011920929D, 0.77000001192092896D);
-    public static VoxelShape AXIS_NORTH =  Block.makeCuboidShape(0.3999999940395355D, 0.00000000298023224D, 0.0D, 0.5999999761581421D, 0.150000011920929D, 0.23000001192092896D);
-
     public TreeTapBlock()
     {
         super(Properties.create(Material.IRON));
@@ -67,13 +61,13 @@ public class TreeTapBlock extends DirectionalBlock
         switch(state.get(FACING))
         {
             case EAST:
-                return AXIS_EAST;
+               return Block.makeCuboidShape(13.0D, -1.0D, 6.0D, 16.0D, 4.0D, 10.0D);
             case WEST:
-                return AXIS_WEST;
+                return Block.makeCuboidShape(0.0D, -1.0D, 6.0D, 3.0D, 4.0D, 10.0D);
             case SOUTH:
-                return AXIS_SOUTH;
+                return Block.makeCuboidShape(6.0D, -1.0D, 13.0D, 10.0D, 4.0D, 16.0D);
             default:
-                return AXIS_NORTH;
+                return Block.makeCuboidShape(6.0D, -1.0D, 0.0D, 10.0D, 4.0D, 3.0D);
         }
     }
 }
