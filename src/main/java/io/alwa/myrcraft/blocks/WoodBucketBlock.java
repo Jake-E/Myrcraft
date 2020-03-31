@@ -28,7 +28,7 @@ import javax.annotation.Nullable;
 public class WoodBucketBlock extends Block {
     
     public WoodBucketBlock() {
-        super(Properties.create(Material.WOOD, MaterialColor.BROWN));
+        super(Properties.create(Material.WOOD, MaterialColor.BROWN).notSolid());
     }
     
     @Nullable

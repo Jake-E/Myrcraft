@@ -1,5 +1,5 @@
 {
   "variants": {
-    "normal": { "model": "myrcraft:rubberleaves"}
+    "": { "model": "myrcraft:block/rubberleaves"}
   }
 }

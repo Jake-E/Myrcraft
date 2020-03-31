@@ -8,16 +8,16 @@ import io.alwa.myrcraft.fluids.MyrcraftFluids;
 import io.alwa.myrcraft.items.MyrcraftItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.client.renderer.texture.ITickable;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
-public class TileEntityTreeTap extends TileEntity implements ITickable
+public class TileEntityTreeTap extends TileEntity implements ITickableTileEntity
 {
     public TileEntityTreeTap()
     {

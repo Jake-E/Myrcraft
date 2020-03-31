@@ -1,6 +1,6 @@
 {
   "parent": "block/cross",
   "textures": {
-    "cross": "myrcraft:item/rubberwoodsapling"
+    "cross": "myrcraft:item/rubbersapling"
   }
 }

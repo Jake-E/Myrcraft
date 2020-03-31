@@ -19,9 +19,11 @@ public class MyrcraftBlocks {
     
     public static final RegistryObject<Block> RUBBER_WOOD = BLOCKS.register("rubberwood", RubberWoodBlock::new);
     public static final RegistryObject<Block> RUBBER_PLANKS = BLOCKS.register("rubberplanks", RubberPlanksBlock::new);
-    public static final RegistryObject<Block> RUBBER_SAPLING = BLOCKS.register("rubberwoodsapling", RubberSaplingBlock::new);
+    public static final RegistryObject<Block> RUBBER_SAPLING = BLOCKS.register("rubbersapling", RubberSaplingBlock::new);
     public static final RegistryObject<Block> WOODEN_BUCKET = BLOCKS.register("woodbucket", WoodBucketBlock::new);
     public static final RegistryObject<Block> TREE_TAP = BLOCKS.register("treetap", TreeTapBlock::new);
+    public static final RegistryObject<Block> RUBBER_LEAVES = BLOCKS.register("rubberleaves", RubberLeavesBlock::new);
+    public static final RegistryObject<Block> LATEX_LOG = BLOCKS.register("latexlog", LatexLogBlock::new);
     
     
     public static final RegistryObject<TileEntityType<TileEntityWoodBucket>> WOODEN_BUCKET_TILE =
@@ -31,6 +33,6 @@ public class MyrcraftBlocks {
             TILES_ENTITIES.register("treetap", () -> TileEntityType.Builder.create(TileEntityTreeTap::new, MyrcraftBlocks.TREE_TAP.get()).build(null));
     
     public static final RegistryObject<TileEntityType<TileEntityRubberWood>> RUBBER_WOOD_TILE =
-            TILES_ENTITIES.register("rubberwood", () -> TileEntityType.Builder.create(TileEntityRubberWood::new, MyrcraftBlocks.RUBBER_WOOD.get()).build(null));
+            TILES_ENTITIES.register("rubberwood", () -> TileEntityType.Builder.create(TileEntityRubberWood::new, MyrcraftBlocks.LATEX_LOG.get()).build(null));
     
 }

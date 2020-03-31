@@ -3,6 +3,7 @@ package io.alwa.myrcraft.fluids;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.state.StateContainer;
+import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 
 public class LatexFluid extends ForgeFlowingFluid
@@ -12,7 +13,7 @@ public class LatexFluid extends ForgeFlowingFluid
         super(properties);
         this.setDefaultState(this.getStateContainer().getBaseState().with(LEVEL_1_8, 7));
     }
-    
+
     @Override
     protected void fillStateContainer(StateContainer.Builder<Fluid, IFluidState> builder)
     {
