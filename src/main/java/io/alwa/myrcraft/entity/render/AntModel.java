@@ -38,13 +38,7 @@ public class AntModel <T extends BaseAntEntity> extends EntityModel<T> {
     }
 
     @Override
-    public void render(MatrixStack matrixStack, IVertexBuilder iVertexBuilder, int i, int i1, float v, float v1, float v2, float scale) {
-        float temp = scale / 4;
-        RenderSystem.pushMatrix();
-        RenderSystem.translatef(0.0F, 17.0F * temp, 0.0F);
-        
-        bone.render(matrixStack, iVertexBuilder, i, i1, v, v1, v2, scale);
-    
-        RenderSystem.popMatrix();
+    public void render(MatrixStack matrixStack, IVertexBuilder iVertexBuilder, int i, int i1, float v, float v1, float v2, float v3) {
+        bone.render(matrixStack, iVertexBuilder, i, i1, v, v1, v2, v3);
     }
 }
