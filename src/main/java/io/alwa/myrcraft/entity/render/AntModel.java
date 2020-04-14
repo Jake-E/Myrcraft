@@ -18,19 +18,18 @@ public class AntModel <T extends BaseAntEntity> extends EntityModel<T> {
         textureHeight = 16;
 
         bone = new ModelRenderer(this);
-        bone.setRotationPoint(0.0F, 24.0F, 0.0F);
+        bone.setRotationPoint(8.0F, 24.0F, -9.0F);
         bone.addBox(-9.0F, -5.0F, 4.0F, 3, 3, 3, 0.0F, false);
         bone.addBox(-9.0F, -6.0F, 3.0F, 1, 1, 1, 0.0F, false);
         bone.addBox(-7.0F, -6.0F, 3.0F, 1, 1, 1, 0.0F, false);
         bone.addBox(-9.0F, -3.0F, 7.0F, 3, 2, 3, 0.0F, false);
-        bone.addBox( -6.0F, -1.0F, 6.0F, 1, 1, 1, 0.0F, false);
+        bone.addBox(-6.0F, -1.0F, 6.0F, 1, 1, 1, 0.0F, false);
         bone.addBox(-6.0F, -1.0F, 8.0F, 1, 1, 1, 0.0F, false);
-        bone.addBox( -6.0F, -1.0F, 10.0F, 1, 1, 1, 0.0F, false);
+        bone.addBox(-6.0F, -1.0F, 10.0F, 1, 1, 1, 0.0F, false);
         bone.addBox(-10.0F, -1.0F, 8.0F, 1, 1, 1, 0.0F, false);
         bone.addBox(-10.0F, -1.0F, 6.0F, 1, 1, 1, 0.0F, false);
-        bone.addBox( -10.0F, -1.0F, 10.0F, 1, 1, 1, 0.0F, false);
-        bone.addBox(-10.0F, -5.0F, 10.0F, 5, 3, 4, 0.0F, false);
-    }
+        bone.addBox(-10.0F, -1.0F, 10.0F, 1, 1, 1, 0.0F, false);
+        bone.addBox(-10.0F, -5.0F, 10.0F, 5, 3, 4, 0.0F, false);    }
 
     @Override
     public void setRotationAngles(T t, float v, float v1, float v2, float v3, float v4) {
