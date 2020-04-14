@@ -1,6 +1,6 @@
 {
   "variants": {
-    "axis=y":    { "model": "myrcraft:block/rubberwood" },
+    "axis=y":    { "model": "myrcraft:block/rubberwood_all_carved" },
     "axis=z":     { "model": "myrcraft:block/rubberwood", "x": 90 },
     "axis=x":     { "model": "myrcraft:block/rubberwood", "x": 90, "y": 90 },
     "axis=none":   { "model": "oak_bark" }

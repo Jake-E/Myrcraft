@@ -8,12 +8,17 @@ import io.alwa.myrcraft.fluids.MyrcraftFluids;
 import io.alwa.myrcraft.items.MyrcraftItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particles.IParticleData;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
@@ -69,7 +74,10 @@ public class TileEntityTreeTap extends TileEntity implements ITickableTileEntity
 
     private void spawnParticle(BlockPos pos, Direction tapFace){
 //        ParticleTapDrip drip = new ParticleTapDrip(world, pos.getX() + 0.5D + tapFace.getXOffset() * 0.3D, pos.getY() - 0.2D, pos.getZ() + 0.5D + tapFace.getZOffset() * 0.3D);
-        //TODO find how this is done now
-//        Minecraft.getInstance().effectRenderer.addEffect(drip);
+
+        IParticleData drip = Fluids.FLOWING_WATER.getFlowingFluid().getDefaultState().getDripParticleData();
+        if (drip != null) {
+            world.addParticle(drip, pos.getX() + 0.5D + tapFace.getXOffset() * 0.3D, pos.getY() - 0.2D, pos.getZ() + 0.5D + tapFace.getZOffset() * 0.3D, 0.9800000190734863D, 0.9800000190734863D, 0.9800000190734863D);
+        }
     }
 }

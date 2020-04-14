@@ -4,6 +4,7 @@ import io.alwa.myrcraft.tiles.TileEntityWoodBucket;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.player.PlayerEntity;
@@ -28,7 +29,7 @@ import javax.annotation.Nullable;
 public class WoodBucketBlock extends Block {
     
     public WoodBucketBlock() {
-        super(Properties.create(Material.WOOD, MaterialColor.BROWN).notSolid());
+        super(Properties.create(Material.WOOD, MaterialColor.BROWN).notSolid().hardnessAndResistance(0.6f).sound(SoundType.WOOD));
     }
     
     @Nullable

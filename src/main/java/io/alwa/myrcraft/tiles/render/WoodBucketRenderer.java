@@ -2,7 +2,6 @@ package io.alwa.myrcraft.tiles.render;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import io.alwa.myrcraft.client.MyrcraftRenderTypes;
 import io.alwa.myrcraft.tiles.TileEntityWoodBucket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.*;
@@ -10,14 +9,17 @@ import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.world.World;
-import org.lwjgl.opengl.GL11;
 
 public class WoodBucketRenderer extends TileEntityRenderer<TileEntityWoodBucket> {
 
     public WoodBucketRenderer(TileEntityRendererDispatcher dispatcher) {
         super(dispatcher);
+    }
+
+    private interface LevelRenderer
+    {
+        void vertex(float x, float z, float u, float v);
     }
 
     @Override
@@ -35,12 +37,10 @@ public class WoodBucketRenderer extends TileEntityRenderer<TileEntityWoodBucket>
 
         float fluidLevel = y0 + ((y11 - y0) * amount / (float) bucket.tank.getCapacity());
 
-        int la = ((combinedLightIn >> 16 & 0xFFFF) * 3 + 240) / 4;
-        int lb = ((combinedOverlayIn & 0xFFFF) * 3 * 3 + 240) / 4;
-
         Matrix4f m = matrixStack.getLast().getMatrix();
+        Matrix3f n = matrixStack.getLast().getNormal();
 
-        IVertexBuilder buffer = Minecraft.getInstance().getRenderTypeBuffers().getBufferSource().getBuffer(MyrcraftRenderTypes.BUCKET_RENDER_TYPE);
+        IVertexBuilder buffer = iRenderTypeBuffer.getBuffer(Atlases.getTranslucentBlockType());
 
         TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasSpriteGetter(AtlasTexture.LOCATION_BLOCKS_TEXTURE).apply(bucket.tank.getFluid().getFluid().getAttributes().getStillTexture(bucket.tank.getFluid()));
 
@@ -57,6 +57,9 @@ public class WoodBucketRenderer extends TileEntityRenderer<TileEntityWoodBucket>
         int g = (color >> 8) & 0xFF;
         int b = color & 0xFF;
 
+        //add(POSITION_3F).add(COLOR_4UB).add(TEX_2F).add(TEX_2S).add(TEX_2SB).add(NORMAL_3B).add(PADDING_1B).build());
+        LevelRenderer renderer = (x, z, u, v) -> buffer.pos(m, x, fluidLevel, z).color(r, g, b, a).tex(u, v).overlay(combinedOverlayIn).lightmap(combinedLightIn).normal(n, 0, 1, 0).endVertex();
+
         if(fluidLevel >= 0.18999999999990003 && fluidLevel <= 0.37187500000000007D){
             o0 = 3.00F / 16F;
             o1 = 13.00F / 16F;
@@ -66,39 +69,37 @@ public class WoodBucketRenderer extends TileEntityRenderer<TileEntityWoodBucket>
             o1 = 13.00F / 16F;
 
             // West
-            buffer.pos(m, 2F/16F, fluidLevel, 4F/16F).color(r, g, b, a).tex(u0 + uo, v0 + vo).lightmap(la, lb).endVertex();
-            buffer.pos(m, 2F/16F, fluidLevel, 12F/16F).color(r, g, b, a).tex(u1 - uo, v0 + vo).lightmap(la, lb).endVertex();
-            buffer.pos(m, 3F/16F, fluidLevel, 12F/16F).color(r, g, b, a).tex(u1 - uo, v1 - vo).lightmap(la, lb).endVertex();
-            buffer.pos(m, 3F/16F, fluidLevel, 4F/16F).color(r, g, b, a).tex(u0 + uo, v1 - vo).lightmap(la, lb).endVertex();
+            renderer.vertex(2F/16F, 4F/16F, u0 + uo, v0 + vo);
+            renderer.vertex(2F/16F, 12F/16F, u1 - uo, v0 + vo);
+            renderer.vertex(3F/16F, 12F/16F, u1 - uo, v1 - vo);
+            renderer.vertex(3F/16F, 4F/16F, u0 + uo, v1 - vo);
 
             // South
-            buffer.pos(m, 4F/16F, fluidLevel, 13F/16F).color(r, g, b, a).tex(u0 + uo, v0 + vo).lightmap(la, lb).endVertex();
-            buffer.pos(m, 4F/16F, fluidLevel, 14F/16F).color(r, g, b, a).tex(u1 - uo, v0 + vo).lightmap(la, lb).endVertex();
-            buffer.pos(m, 12F/16F, fluidLevel, 14F/16F).color(r, g, b, a).tex(u1 - uo, v1 - vo).lightmap(la, lb).endVertex();
-            buffer.pos(m, 12F/16F, fluidLevel, 13F/16F).color(r, g, b, a).tex(u0 + uo, v1 - vo).lightmap(la, lb).endVertex();
+            renderer.vertex(4F/16F, 13F/16F, u0 + uo, v0 + vo);
+            renderer.vertex(4F/16F, 14F/16F, u1 - uo, v0 + vo);
+            renderer.vertex(12F/16F, 14F/16F, u1 - uo, v1 - vo);
+            renderer.vertex(12F/16F, 13F/16F, u0 + uo, v1 - vo);
 
             // East
-            buffer.pos(m, 13F/16F, fluidLevel, 4F/16F).color(r, g, b, a).tex(u0 + uo, v0 + vo).lightmap(la, lb).endVertex();
-            buffer.pos(m, 13F/16F, fluidLevel, 12F/16F).color(r, g, b, a).tex(u1 - uo, v0 + vo).lightmap(la, lb).endVertex();
-            buffer.pos(m, 14F/16F, fluidLevel, 12F/16F).color(r, g, b, a).tex(u1 - uo, v1 - vo).lightmap(la, lb).endVertex();
-            buffer.pos(m, 14F/16F, fluidLevel, 4F/16F).color(r, g, b, a).tex(u0 + uo, v1 - vo).lightmap(la, lb).endVertex();
+            renderer.vertex(13F/16F, 4F/16F, u0 + uo, v0 + vo);
+            renderer.vertex(13F/16F, 12F/16F, u1 - uo, v0 + vo);
+            renderer.vertex(14F/16F, 12F/16F, u1 - uo, v1 - vo);
+            renderer.vertex(14F/16F, 4F/16F, u0 + uo, v1 - vo);
 
             // North
-            buffer.pos(m, 4F/16F, fluidLevel, 2F/16F).color(r, g, b, a).tex(u0 + uo, v0 + vo).lightmap(la, lb).endVertex();
-            buffer.pos(m, 4F/16F, fluidLevel, 3F/16F).color(r, g, b, a).tex(u1 - uo, v0 + vo).lightmap(la, lb).endVertex();
-            buffer.pos(m, 12F/16F, fluidLevel, 3F/16F).color(r, g, b, a).tex(u1 - uo, v1 - vo).lightmap(la, lb).endVertex();
-            buffer.pos(m, 12F/16F, fluidLevel, 2F/16F).color(r, g, b, a).tex(u0 + uo, v1 - vo).lightmap(la, lb).endVertex();
+            renderer.vertex(4F/16F, 2F/16F, u0 + uo, v0 + vo);
+            renderer.vertex(4F/16F, 3F/16F, u1 - uo, v0 + vo);
+            renderer.vertex(12F/16F, 3F/16F, u1 - uo, v1 - vo);
+            renderer.vertex(12F/16F, 2F/16F, u0 + uo, v1 - vo);
         }
         //UP
         if (fluidLevel < 1D)
         {
-            buffer.pos(m, o0, fluidLevel, o0).color(r, g, b, a).tex(u0 + uo, v0 + vo).lightmap(la, lb).endVertex();
-            buffer.pos(m, o0, fluidLevel, o1).color(r, g, b, a).tex(u1 - uo, v0 + vo).lightmap(la, lb).endVertex();
-            buffer.pos(m, o1, fluidLevel, o1).color(r, g, b, a).tex(u1 - uo, v1 - vo).lightmap(la, lb).endVertex();
-            buffer.pos(m, o1, fluidLevel, o0).color(r, g, b, a).tex(u0 + uo, v1 - vo).lightmap(la, lb).endVertex();
+            renderer.vertex(o0, o0, u0 + uo, v0 + vo);
+            renderer.vertex(o0, o1, u1 - uo, v0 + vo);
+            renderer.vertex(o1, o1, u1 - uo, v1 - vo);
+            renderer.vertex(o1, o0, u0 + uo, v1 - vo);
         }
-
-        Minecraft.getInstance().getRenderTypeBuffers().getBufferSource().finish(MyrcraftRenderTypes.BUCKET_RENDER_TYPE);
 
     }
 }

@@ -6,6 +6,6 @@ import net.minecraft.block.material.MaterialColor;
 
 public class RubberWoodBlock extends LogBlock {
     public RubberWoodBlock() {
-        super(MaterialColor.WOOD, Properties.from(Blocks.JUNGLE_LOG));
+        super(MaterialColor.WOOD, Properties.from(Blocks.JUNGLE_LOG).notSolid());
     }
 }
